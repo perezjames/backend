@@ -477,6 +477,42 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiTransaccionTransaccion extends Struct.CollectionTypeSchema {
+  collectionName: 'transaccions';
+  info: {
+    displayName: 'Transaccion';
+    pluralName: 'transaccions';
+    singularName: 'transaccion';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    categoria: Schema.Attribute.Enumeration<
+      ['quincena', 'transmipass', 'datos', 'aporte casa']
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    fecha: Schema.Attribute.Date;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::transaccion.transaccion'
+    > &
+      Schema.Attribute.Private;
+    mitad_guardada: Schema.Attribute.Boolean;
+    monto: Schema.Attribute.Decimal;
+    publishedAt: Schema.Attribute.DateTime;
+    tipo: Schema.Attribute.Enumeration<
+      ['ingreso', 'gasto fijo', 'gasto variable']
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -989,6 +1025,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::transaccion.transaccion': ApiTransaccionTransaccion;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

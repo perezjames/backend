@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "transaccions",
+  "info": {
+    "singularName": "transaccion",
+    "pluralName": "transaccions",
+    "displayName": "Transaccion"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "monto": {
+      "type": "decimal"
+    },
+    "fecha": {
+      "type": "date"
+    },
+    "tipo": {
+      "type": "enumeration",
+      "enum": [
+        "ingreso",
+        "gasto fijo",
+        "gasto variable"
+      ]
+    },
+    "categoria": {
+      "type": "enumeration",
+      "enum": [
+        "quincena",
+        "transmipass",
+        "datos",
+        "aporte casa"
+      ]
+    },
+    "mitad_guardada": {
+      "type": "boolean"
+    }
+  }
+}
